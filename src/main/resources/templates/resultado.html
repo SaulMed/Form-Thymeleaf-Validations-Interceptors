@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!-- CSS only -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	
+	<section th:replace="components/timeLoad :: interceptorTime"></section>
+
+	<div class="container mx-auto text-center w-50">
+		<a th:href="@{/form}" class="btn btn-primary my-4">Back</a>
+		<p th:text=" 'Secret Value: ' + ${game.secretValue}"></p>
+		<ul class="list-group my-4">
+			<li class="list-group-item active" th:text="${titulo}">
+			<li class="list-group-item" th:text=" 'Identificador: ' + ${game.id}" /></li>
+			<li class="list-group-item" th:text=" 'Author: ' + ${game.author}"></li>
+			<li class="list-group-item" th:text=" 'Title: ' + ${game.title}"></li>
+			<li class="list-group-item"
+				th:text=" 'Price: ' + '$' + ${game.price}"></li>
+			<li class="list-group-item" th:text=" 'Email: ' + ${game.email}"></li>
+			<li class="list-group-item"
+				th:text=" 'Release Date: ' + ${ #dates.format(game.lanzamiento , 'dd/MM/yyyy') }"></li>
+			<li class="list-group-item" th:text="'Game Adult: ' +  ${game.adult}"></li>
+			<li class="list-group-item" th:text="'Mode Game: ' + ${game.players}"></li>
+			<ul class="list-group my-4">
+				<li class="list-group-item active" th:text="'Data Category'" />
+				<li class="list-group-item"
+					th:text=" 'Data Category: ' + ${game.category.id} + ' : ' + ${game.category.code} + ' => ' + ${game.category.name}"></li>
+			</ul>
+		</ul>
+
+		<ul class="list-group my-4">
+			<li class="list-group-item active" th:text="'Supported Platforms'" />
+			<li class="list-group-item" th:each=" platform : ${game.platforms}"
+				th:text="'Data Platforms: ' + ${platform.id} + ' : ' + ${platform.code} + ' => ' + ${platform.name} "></li>
+		</ul>
+	</div>
+
+
+</body>
+</html>
